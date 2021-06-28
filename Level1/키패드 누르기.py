@@ -1,29 +1,21 @@
 def solution(numbers, hand):
-    left, center, right = [1,4,7,10], [2,5,8,11], [3,6,9,12]
-    cur_left, cur_right = 10, 12
+    left, right = [1,4,7,10], [3,6,9,12] #키패드
+    cur_left, cur_right = 10, 12 #처음 위치
     result = ""
-    for n in numbers:
-        if n==0:
-            n = 11
-            
-        if n in left:
+    for n in numbers:            
+        if n in left: #왼쪽 열
             result += "L"
             cur_left = n
             
-        elif n in right:
+        elif n in right: #오른쪽 열
             result += "R"
             cur_right = n
             
-        else:
-            if cur_left in center:
-                left_dist = abs(center.index(n) - center.index(cur_left))
-            else:
-                left_dist = 1 + abs(center.index(n) - center.index(cur_left + 1))
-            if cur_right in center:
-                right_dist = abs(center.index(n) - center.index(cur_right))
-            else:
-                right_dist = 1 + abs(center.index(n) - center.index(cur_right - 1))
-                
+        else: #가운데 열
+            n = 11 if n == 0 else n
+            left_dist = abs(n - cur_left) // 3 + abs(n - cur_left) % 3
+            right_dist = abs(n - cur_right) // 3 + abs(n - cur_right) % 3
+            
             if left_dist>right_dist:
                 result += "R"
                 cur_right = n
