@@ -1,0 +1,2 @@
+def solution(n):
+    return sum([int(e) for e in str(n)])
