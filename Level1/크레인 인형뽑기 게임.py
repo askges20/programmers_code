@@ -3,7 +3,6 @@ def solution(board, moves):
     basket = [] #바구니
     answer = 0 #터트린 인형 수
     for n in moves:
-        catch = 0
         for i in range(h):
             if board[i][n-1] != 0:
                 basket.append(board[i][n-1]) #잡은 인형 바구니에 넣기
